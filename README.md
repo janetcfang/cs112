@@ -1,2 +1,4 @@
 # cs112
-lab assignments
+- lab assignments
+- class examples
+
