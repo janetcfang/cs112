@@ -1,7 +1,7 @@
 /* 
 
 	Assignment is to create a program that prints out a diamond shape like this:
-	   *
+     *
     * *
    * * *
   * * * *
