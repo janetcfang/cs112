@@ -1,4 +1,4 @@
-# cs112
+# CS 112
 <b>Introduction to Computer Science II </b>
 <br>
 <i>Language: Java</i>
