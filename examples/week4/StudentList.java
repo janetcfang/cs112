@@ -33,6 +33,18 @@ public class StudentList {
 	//method to calculate average score across all students
 	public double calculateAverage() {
 
+			double total = 0;
+			//for each student
+			for (Student student: this.students){
+				//add score to total
+				total = total + student.getScore();
+			}
+
+			//result = total/number of students
+			double result = total/this.students.size();
+			//return result
+			return result;
+
 		//method implementation replaced by algorithm
 
 		//declare variable to hold total
