@@ -1,0 +1,57 @@
+// Question 1 //
+
+int value = 0;
+for(int num = 10; num <= 40; num +=10){
+	value = value + num;
+}
+System.out.println(value);
+//prints 100, num stops at 50
+
+
+// Question 2 //
+
+int value = 0;
+for(int num = 10; num < 40; num += 10){
+	value = value + num;
+}
+System.out.println(value);
+//prints 60, num stops at 40
+
+
+// Question 3 //
+
+Translate the following while loop into a for loop.
+
+int num = 1;
+while(num < 20) {
+	num++;
+	System.out.println(num);
+}
+
+for loop:
+for(int num = 2; num <= 20; num++){
+	System.out.println(num);
+}
+
+
+
+//Question 4 //
+
+Write a method that takes as input a String and returns a new String that contains all of the characters of the input String in reverse order.
+	
+	- for each char of input in reverse
+	- add that char to returnValue
+
+
+
+public String reverseString(String input){
+
+	String returnValue = "";
+	
+	for(int i = input.length()-1; i >=0; i--){
+		returnValue = returnValue + input.charAt(i);
+
+
+	}
+	return 	returnValue;
+} 
