@@ -1,3 +1,8 @@
+/*
+
+	@author Janet Fang
+*/
+
 public class StringListTester {
 
 	private StringList sl;
