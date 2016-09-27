@@ -5,13 +5,18 @@ public class StringList {
 
 	//declare data members to hold an array of strings and an
 	//int to keep track of the number of items in the list
+	private String[] list;
+	private int[] items;
 
 	/*
 		A constructor that takes no input and instantiates a new
 		String[] of size 10.
 	*/
 	public StringList() {
+		list = new String[10];
 	}
+
+
 
 	/*
 		A constructor that takes a size and instantiates a new
@@ -20,6 +25,8 @@ public class StringList {
 	public StringList(int size) {
 
 	}
+
+
 
 	/*
 		Adds the new item s to the end of the array 
