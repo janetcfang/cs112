@@ -1,32 +1,42 @@
 /*
 	A class providing ArrayList-like functionality for a list of String objects.
+	@author Janet Fang
 */
+
 public class StringList {
 
 	//declare data members to hold an array of strings and an
 	//int to keep track of the number of items in the list
-	private String[] list;
-	private int[] items;
+	private String[] items;
+	private int count;
 
 	/*
 		A constructor that takes no input and instantiates a new
 		String[] of size 10.
 	*/
 	public StringList() {
-		list = new String[10];
+		items = new String[10];
+		count = 0; 
 	}
-
-
 
 	/*
 		A constructor that takes a size and instantiates a new
 		String[] of size size.
 	*/
 	public StringList(int size) {
-
+		items = new String[size];
+		count = 0;
 	}
 
-
+	//RESIZE method
+	private void resize(){
+		//if all slots filled, resize, move all exisitng # down 1 slot, items[0] = newItems, count++
+		String[] newArray = new String[items.length*2];
+		for(int i = 0; i < items.length; i++){
+			newArray[i] = items[i];
+		}
+		items = newArray;
+	}
 
 	/*
 		Adds the new item s to the end of the array 
@@ -36,8 +46,17 @@ public class StringList {
 		the new array.
 	*/
 	public boolean add(String s)  {
-		// REPLACE WITH YOUR CODE
-		return false;
+		//check to see if array is full first
+		//if full, call on resize
+		if(count >= items.length){
+			resize();
+		}
+
+		//not full: add item s to end of the array
+		items[count] = s;
+		count++;
+
+		return true;
 	}
 	
 	/*
@@ -48,7 +67,23 @@ public class StringList {
 		new array.
 	*/
 	public void add(int index, String s) {
-		// REPLACE WITH YOUR CODE
+		if(index>count){
+			throw new IndexOutOfBoundsException("Index Out of Bounds");
+		}
+
+		if(count >= items.length){
+			resize();
+		}
+
+		String last = items[count-1]; //save last element in array
+		
+		for(int i = count-1; i>=index; i--){
+			items[i+1] = items[i];
+		}
+		items[count] = last;
+		items[index] = s;
+		count++;
+
 	}
 
 	/*
@@ -56,7 +91,11 @@ public class StringList {
 		and false otherwise.
 	*/
 	public boolean contains(String s) {
-		// REPLACE WITH YOUR CODE
+		for(int i = 0; i < count; i++){
+			if(items[i]==(s)){ //CHANGED .EQUALS
+				return true;
+			}	
+		}
 		return false;
 	}
 
@@ -65,8 +104,7 @@ public class StringList {
 		and false otherwise.
 	*/
 	public boolean isEmpty() {
-		// REPLACE WITH YOUR CODE
-		return false;
+		return(count==0);
 	}
 
 	/*
@@ -75,8 +113,7 @@ public class StringList {
 		the total number of valid elements.
 	*/
 	public int size() {
-		// REPLACE WITH YOUR CODE
-		return 0;
+		return count;
 	}
 
 	/*
@@ -84,8 +121,12 @@ public class StringList {
 		or -1 if not found.
 	*/
 	public int indexOf(String s) {
-		// REPLACE WITH YOUR CODE
-		return 0;
+		for(int i = 0; i < count; i++){
+			if(items[i]==(s)){ //CHANGED .EQUALS
+				return i;
+			}	
+		}
+		return -1; //not found
 	}
 
 	/*
@@ -93,8 +134,12 @@ public class StringList {
 		or -1 if not found.
 	*/
 	public int lastIndexOf(String s) {
-		// REPLACE WITH YOUR CODE
-		return 0;
+		for(int i = count-1; i > 0; i--){
+			if(items[i]==(s)){ //CHANGED .EQUALS
+				return i;
+			}	
+		}
+		return -1; //not found
 	}
 
 	/*
@@ -102,8 +147,10 @@ public class StringList {
 		may throw IndexOutOfBounds exception.
 	*/
 	public String get(int index) {
-		// REPLACE WITH YOUR CODE
-		return null;
+		if(index>count-1){
+			throw new IndexOutOfBoundsException("Index Out of Bounds");
+		}
+		return items[index];
 	}
 
 	/*
@@ -112,8 +159,13 @@ public class StringList {
 		Returns the item replaced.
 	*/	
 	public String set(int index, String s) {
-		// REPLACE WITH YOUR CODE
-		return null;
+		if(index>count-1){
+			throw new IndexOutOfBoundsException("Index Out of Bounds");
+		}
+
+		String temp = items[index]; //save original item
+		items[index] = s; //replace item
+		return temp; //return item replaced
 	}
 
 	/*
@@ -121,8 +173,17 @@ public class StringList {
 		May throw IndexOutOfBounds exception.
 	*/
 	public String remove(int index) {
-		// REPLACE WITH YOUR CODE
-		return null;
+		if(index>count-1){
+			throw new IndexOutOfBoundsException("Index Out of Bounds");
+		}
+
+		String temp = items[index];
+		for(int i = index; i < count; i++){
+			items[i] = items[i+1];
+		}
+		count--;
+		return temp;
+
 	}
 
 	/*
@@ -130,8 +191,14 @@ public class StringList {
 		and false otherwise.
 	*/
 	public boolean remove(String s) {
-		// REPLACE WITH YOUR CODE
-		return false;
+		int index = indexOf(s); //call the indexOf method 
+		if(index != -1){
+			remove(index);
+			return true;
+		}
+		else{
+			return false;
+		}
 	}
 
 	/*
@@ -140,8 +207,21 @@ public class StringList {
 		{A, B, C, D, E}
 	*/
 	public String toString() {
-		// REPLACE WITH YOUR CODE
-		return null;
-	}
+
+		String returnValue = "";
+
+		if(isEmpty()){
+			return "{}";
+		}
+		else{
+		returnValue = "{";
+			returnValue += items[0];
+			for(int i = 1; i < count; i ++){
+				returnValue += ", " + items[i];
+			}
+		returnValue += "}";
+		}
+		return returnValue;
+	} 
 
 }
