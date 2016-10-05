@@ -1,9 +1,9 @@
 /*
 	A class with several methods to manipulate jpg images.
+	Exercise @author Janet Fang
 */
 
 public class ImageManipulator {
-
 	/*
 		Creates an inversion of the original image by setting the red 
 		value for each pixel to be 255 minus the original red value, 
@@ -14,7 +14,24 @@ public class ImageManipulator {
 		image will be stored
 	*/
 	public void makeNegative(String inputfile, String outputfile) {
-		
+		Picture picture = new Picture(inputfile); //create photo
+		int width = picture.getWidth(); //call getWidth method
+		int height = picture.getHeight(); //call getHeight method
+
+		for(int w = 0; w < width; w++){ //iterate through columns
+			for(int h = 0; h < height; h++){ //iterate through rows
+
+				Pixel p = picture.getPixel(w,h);
+				int red = 255 - p.getRed(); //255 is max of RGB, 255 - color = new color: negative
+				int green = 255 - p.getGreen();
+				int blue = 255 - p.getBlue();
+
+				Pixel pixelNew = new Pixel(red, green, blue); 
+				picture.setPixel(w, h, pixelNew); //setting new colors, replacing colors
+			}
+		}
+
+		picture.store(outputfile);
 
 	}
 
@@ -28,10 +45,7 @@ public class ImageManipulator {
 		@param outputfile - the name of the file where the lightened 
 		image will be stored
 		@param amount - the amount by which the image will be lightened
-	*/
-	public void lighten(String inputfile, String outputfile, double amount) {
-		
-	    /*
+
 	      Hint: if you multiply an integer by a floating point number Java will
 	      automatically convert the result to a floating point number. For these
 	      exercises, you will need to convert that result back into an integer
@@ -43,8 +57,31 @@ public class ImageManipulator {
 	      double resultDouble = 5 * .55;
 	      int resultInt = (int)resultDouble;
 
-	    */
+	*/
+	public void lighten(String inputfile, String outputfile, double amount) {
+		Picture picture = new Picture(inputfile); //create photo
+		int width = picture.getWidth(); //call getWidth method
+		int height = picture.getHeight(); //call getHeight method
 
+		for(int w = 0; w < width; w++){ //iterate through columns
+			for(int h = 0; h < height; h++){ //iterate through rows
+
+				Pixel p = picture.getPixel(w,h);
+
+				double red = ((1 - amount) * p.getRed() + amount * 255);
+				int resultRed = (int)red;
+
+				double green = ((1 - amount) * p.getGreen() + amount * 255);
+				int resultGreen = (int)green;
+
+				double blue = ((1 - amount) * p.getBlue() + amount * 255);
+				int resultBlue = (int)blue;
+
+				Pixel pixelNew = new Pixel(resultRed, resultGreen, resultBlue); 
+				picture.setPixel(w, h, pixelNew); //setting new colors, replacing colors
+			}
+		}
+		picture.store(outputfile);
 	}
 
 	/*
@@ -59,8 +96,28 @@ public class ImageManipulator {
 	*/
 	public void makeGreyscale(String inputfile, String outputfile) {
 
-	}
+		Picture picture = new Picture(inputfile); //create photo
+		int width = picture.getWidth(); //call getWidth method
+		int height = picture.getHeight(); //call getHeight method
 
+		for(int w = 0; w < width; w++){ //iterate through columns 
+			for(int h = 0; h < height; h++){ //iterate through rows
+
+				Pixel p = picture.getPixel(w,h);
+
+				double greyscale = (0.3 * p.getRed()) + (0.59 * p.getGreen()) + (0.11 * p.getBlue());
+
+				int resultRed = (int)greyscale;
+				int resultGreen = (int)greyscale;
+				int resultBlue = (int)greyscale;
+
+				Pixel pixelNew = new Pixel(resultRed, resultGreen, resultBlue); 
+				picture.setPixel(w, h, pixelNew); //setting new colors, replacing colors
+
+			}
+		}
+		picture.store(outputfile);
+	}
 
 	/*
 		Takes as input a number of pixels and scrolls the image by 
@@ -74,7 +131,24 @@ public class ImageManipulator {
 		@param numpixels - the amount by which the image will be scrolled
 	*/
 	public void scrollHorizontal(String inputfile, String outputfile, int numpixels) {
-		
+
+		Picture picture = new Picture(inputfile); //create photo
+		Picture temp = new Picture(inputfile); //temp
+
+		int width = picture.getWidth(); //call getWidth method
+		int height = picture.getHeight(); //call getHeight method	
+
+		for(int w = 0; w < width; w++){
+			for(int h = 0; h < height; h++){
+
+				Pixel p = temp.getPixel(w,h);
+				int newWidth = ((w-numpixels)%width + width) % width;
+				picture.setPixel(newWidth, h, p);
+
+			}
+		}
+		picture.store(outputfile);
+
 	}
 
 }
