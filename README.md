@@ -4,6 +4,7 @@
 <i>Language: Java</i>
 <br>
 - class examples
+- exercises
 - lab assignments
 - projects
 
