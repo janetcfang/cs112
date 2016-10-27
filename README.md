@@ -1,7 +1,7 @@
 # CS 112
 <b>Introduction to Computer Science II </b>
 <br>
-<i>Language: Java</i>
+<i><b>Java</b></i>
 <br>
 - class examples
 - exercises
