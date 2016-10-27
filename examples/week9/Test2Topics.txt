@@ -1,0 +1,23 @@
+Book Sections Covered
+
+Chapter 7 - 7.1, 7.2, 7.3, 7.4, 7.5, 7.7
+Chapter 8 - 8.1, 8.2, 8.3, 8.4, 8.6
+Chapter 9 - 9.1, 9.2, 9.3, 9.4, 9.5
+Chapter 10 - 10.1, 10.2, 10.3
+Topics
+
+Object-oriented design of programs
+Has-a relationship/aggregation
+Static data members and methods
+Interfaces
+Comparable
+Method overloading
+Arrays - 1D, declaring and using
+Arrays - 2D
+Image Manipulation
+Command line arguments
+Subclasses - super, extends, protected, abstract
+Class hierarchies
+final data members, methods, classes
+Late/dynamic binding
+Polymorphism
