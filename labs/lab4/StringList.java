@@ -92,7 +92,7 @@ public class StringList {
 	*/
 	public boolean contains(String s) {
 		for(int i = 0; i < count; i++){
-			if(items[i]==(s)){ //CHANGED .EQUALS
+			if(items[i].equals(s)){ //CHANGED .EQUALS
 				return true;
 			}	
 		}
@@ -122,7 +122,7 @@ public class StringList {
 	*/
 	public int indexOf(String s) {
 		for(int i = 0; i < count; i++){
-			if(items[i]==(s)){ //CHANGED .EQUALS
+			if(items[i].equals(s)){ //CHANGED .EQUALS
 				return i;
 			}	
 		}
@@ -135,7 +135,7 @@ public class StringList {
 	*/
 	public int lastIndexOf(String s) {
 		for(int i = count-1; i > 0; i--){
-			if(items[i]==(s)){ //CHANGED .EQUALS
+			if(items[i].equals(s)){ //CHANGED .EQUALS
 				return i;
 			}	
 		}
